@@ -1,20 +1,10 @@
-
-
-<!--
-Created by Paul Lyons
-thepaullyons at gmail.com
-This code is not guaranteed in anyway, except to create limited joy based on the photos in the various assets folders.
-If you need any help, just email me at the link above.
-November 2012
- -->
-
-
+<?php include 'includes/code.php';?>
 
 <!DOCTYPE HTML>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<title>My Galleries</title>
+<title>My Way Cool Photo Gallery</title>
 	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="js/jquery.easypaginate.js"></script>
     
@@ -54,7 +44,7 @@ November 2012
 </head>
 <body>
 
-<h1>My Galleries</h1>
+<h1>My Way Cool Photo Gallery</h1>
 
 <div id="wrapper">
 
@@ -63,6 +53,8 @@ November 2012
 		<?php
 
 		$folder = $_GET["folder"];
+
+
 		
 		if($folder==''){
 			$countertemp = 0;
@@ -79,12 +71,19 @@ November 2012
 			$counter = 0;
 			$dirf    = 'assets/'.$folder.'/';
 			$dir = scandir($dirf);
+            $dirThumbs = $dirf.'thumbs/';
+
+            if (!file_exists($dirThumbs)) {
+                mkdir($dirThumbs, 0777, true);
+                createThumbs($dirf,$dirThumbs,250);
+            }
+
 			foreach($dir as $file) {
 				$fileName = str_replace('-', ' ', $file);
 				$file = str_replace(' ', '%20', $file);
 	
 			   if(($file!='..') && ($file!='.')) {
-					echo('<div style="background-size: cover; background-image: url(assets/'.$folder.'/'.$file.')">');
+					echo('<div style="background-size: cover; background-image: url(assets/'.$folder.'/thumbs/'.$file.')">');
 					echo('<a rel="shadowbox[GALLERY]" href="assets/'.$folder.'/'.$file.'">');
 					echo('<img src="images/spacer.gif" width="100" height="100" />');
 					echo('</a>');
