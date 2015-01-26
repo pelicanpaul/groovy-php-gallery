@@ -1,5 +1,6 @@
 <?php
-function createThumbs( $pathToImages, $pathToThumbs, $thumbWidth )
+
+function createThumbs($pathToImages, $pathToThumbs, $thumbWidth)
 {
     // open the directory
     $dir = opendir( $pathToImages );
@@ -37,6 +38,72 @@ function createThumbs( $pathToImages, $pathToThumbs, $thumbWidth )
     }
     // close the directory
     closedir( $dir );
+}
+
+function writeMediaList($dirPath){
+    $counter = 0;
+    $pager = 1;
+    $dirf  = $dirPath;
+    $dir = scandir($dirf, 1);
+    foreach($dir as $file) {
+        $fileName = str_replace('-', ' ', $file);
+        $fileName = str_replace('.mp4', '', $fileName);
+
+        if(($file!='..') && ($file!='.')) {
+            echo('<li>');
+            echo('<a href="?folder='.$file .'&page='.$pager.'">');
+            echo($fileName);
+            echo('</a></li>');
+            $counter++;
+            if($counter == 20){
+                $pager = $pager + 1;
+                $counter = 0;
+            }
+        }
+    }
+}
+
+function writeMedia($dirPath){
+
+    $folder = $_GET["folder"];
+
+    if($folder==''){
+        $countertemp = 0;
+        $dirf = $dirPath;
+        $dir = scandir($dirf,1);
+        foreach($dir as $file) {
+            if ($countertemp == 0){
+                $folder = $file;
+            }
+            $countertemp++;
+        }
+    }
+    if($folder!=''){
+        $counter = 0;
+        $dirf    = 'assets/'.$folder.'/';
+        $dir = scandir($dirf);
+        $dirThumbs = $dirf.'thumbs/';
+
+        if (!file_exists($dirThumbs)) {
+            mkdir($dirThumbs, 0777, true);
+            createThumbs($dirf,$dirThumbs,250);
+        }
+
+        foreach($dir as $file) {
+            $fileName = str_replace('-', ' ', $file);
+            $file = str_replace(' ', '%20', $file);
+
+            if(($file!='..') && ($file!='.')) {
+                echo('<div style="background-size: cover; background-image: url('.$dirPath.'/'.$folder.'/thumbs/'.$file.')">');
+                echo('<a rel="shadowbox[GALLERY]" href="'.$dirPath.'/'.$folder.'/'.$file.'">');
+                echo('<img src="images/spacer.gif" width="100" height="100" />');
+                echo('</a>');
+                echo('</div>');
+                $counter++;
+            }
+        }
+    }
+
 }
 
 ?>
