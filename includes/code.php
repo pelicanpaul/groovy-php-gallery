@@ -89,11 +89,20 @@ function writeMedia($dirPath){
             createThumbs($dirf,$dirThumbs,250);
         }
 
+
+
         foreach($dir as $file) {
             $fileName = str_replace('-', ' ', $file);
             $file = str_replace(' ', '%20', $file);
+	        $file_path = $dirPath.'/'.$folder.'/'.$file;
 
-            if(($file!='..') && ($file!='.')) {
+	        if(@is_array(getimagesize($file_path))){
+		        $image = true;
+	        } else {
+		        $image = false;
+	        }
+
+            if(($file!='..') && ($file!='.') && ($image == true)) {
                 echo('<div style="background-size: cover; background-image: url('.$dirPath.'/'.$folder.'/thumbs/'.$file.')">');
                 echo('<a rel="shadowbox[GALLERY]" href="'.$dirPath.'/'.$folder.'/'.$file.'">');
                 echo('<img src="images/spacer.gif" width="100" height="100" />');
