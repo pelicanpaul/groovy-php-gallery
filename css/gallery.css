@@ -1,78 +1,97 @@
 body {
-background-color: #121212;
-color: #fff;
-font: 12px "Lucida Sans Unicode", "Lucida Grande", sans-serif; 
-font-weight:normal;
-margin: 0 auto;
-text-align: center;
-width: 100%;
+    background-color: #000;
+    color: #fff;
+    font: 12px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-weight: normal;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
 }
 
 h1 {
-opacity: 0.5;
+    opacity: 0.5;
 }
 
 #wrapper {
-width: 1000px; 
-margin: 0 auto; 
-border: 1px solid #232323; 
-text-align:left; 
-padding: 20px; 
-background-color: #000;
-}
-
-#main-stage {
-float: left; width: 72%;
+    width: 100%;
+    margin: 0 auto;
+    border: 1px solid #232323;
+    text-align: left;
+    padding: 20px;
+    background-color: #000;
 }
 
 #wrapper-photo-list {
-float: left; width:26%; height: 800px; margin: 0 0 0 15px;
+    height: 800px;
 }
 
 a {
-color: #fff;
-text-decoration:none;
+    color: #fff;
+    text-decoration: none;
 }
 
 ul {
-list-style-type:none;
-margin: 0;
-padding: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 #photo-list li {
-border-bottom: 1px solid #444;
-padding: 4px 0;
+    border-bottom: 1px solid #444;
+    padding: 4px 0;
 }
 
-#photo-list li a:hover{
-color: red;
+#photo-list li a:hover {
+    color: red;
+    text-decoration: none;
 }
 
 #photos div {
-float: left;
-margin: 10px;
-width: 100px;
-height: 100px;
+    float: left;
+    margin: 10px;
+    width: 117px;
+    height: 117px;
 }
 
-ol#pagination{
-overflow:hidden;
-margin: 10px 0;;
-padding: 0;
+ol#pagination {
+    overflow: hidden;
+    margin: 10px 0;;
+    padding: 0;
 }
 
-ol#pagination li{
-float:left;
-list-style:none;
-cursor:pointer;
-margin:0 0 0 .5em;
+ol#pagination li {
+    float: left;
+    list-style: none;
+    cursor: pointer;
+    margin: 0 0 0 .5em;
 }
 
-ol#pagination li.current{
-color:#f00;font-weight:bold;
+ol#pagination li.current {
+    color: #f00;
+    font-weight: bold;
 }
 
-.clear {
-    clear: both;
+
+@media screen and (max-width: 990px) {
+
+
+    #wrapper-photo-list {
+        height: 800px;
+        margin-top: 30px;
+    }
 }
+
+@media screen and (max-width: 699px) {
+    #photos div {
+        float: none;
+        margin: 20px auto;
+        width: 290px;
+        height: 290px;
+    }
+
+    #wrapper {
+        padding: 0;
+    }
+
+}
+
