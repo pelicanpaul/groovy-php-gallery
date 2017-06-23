@@ -30,6 +30,13 @@ a {
     text-decoration: none;
 }
 
+a.link-gallery {
+    display:block;
+    width: 117px;
+    height: 117px;
+}
+
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -74,7 +81,6 @@ ol#pagination li.current {
 
 @media screen and (max-width: 990px) {
 
-
     #wrapper-photo-list {
         height: 800px;
         margin-top: 30px;
@@ -93,5 +99,15 @@ ol#pagination li.current {
         padding: 0;
     }
 
+    a.link-gallery {
+        display:block;
+        width: 290px;
+        height: 290px;
+    }
+
+    .spacer {
+        width: 290px;
+        height: 290px;
+    }
 }
 
